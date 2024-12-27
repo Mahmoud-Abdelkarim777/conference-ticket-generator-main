@@ -1,0 +1,18 @@
+
+@keyframes slideDownFadeOut {
+    0% {
+        opacity: 0;
+        transform: translate(-50) translateY(0); 
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%) translateY(250px); /* ينتهي عند 200px أسفل */
+    }
+}
+
+.popup-animation {
+    animation: slideDownFadeOut 3s forwards;
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="overflow-x-hidden scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
@@ -10,51 +10,132 @@
 
   <!-- CSS Styles -->
   <link href="./src/output.css" rel="stylesheet">
-
+  <link href="style.css" rel="stylesheet">
+  <!-- google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <!-- google font for social icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    .attribution a { color: hsl(0, 0%, 100%); }
   </style>
 </head>
-<body>
-
-  <!-- Form starts -->
-
-  Your Journey to Coding Conf 2025 Starts Here!
-
-  Secure your spot at next year's biggest coding conference.
-
-  Upload Avatar
-  Drag and drop or click to upload
-  Upload your photo (JPG or PNG, max size: 500KB).
-
-  Full Name
-
-  Email Address
-  example@email.com
-
-  GitHub Username
-  @yourusername
-
-  Generate My Ticket
-
-  <!-- Form ends -->
-
-  <!-- Generated tickets starts -->
-
-  Congrats, <!-- Full Name -->! Your ticket is ready.
-
-  We've emailed your ticket to <!-- Email Address --> and will send updates in the run up to the event.
-
-  Coding Conf
-  Jan 31, 2025 / Austin, TX
-
-  <!-- Generated tickets ends -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+<body class="bg-[url('../assets/images/background-mobile.webp')] md:bg-[url('../assets/images/background-tablet.webp')] lg:bg-[url('../assets/images/background-desktop.webp')] bg-center bg-no-repeat bg-cover font-inconsolata relative h-[100vh] overflow-x-hidden">
+  <div>
+    <img src="./assets/images/pattern-lines.svg" class="absolute top-0 z-[-1] bg-center bg-no-repeat h-[100vh]" alt="pattern-lines">
+    <img src="./assets/images/pattern-squiggly-line-top.svg" class="absolute right-0 md:top-20 top-8 w-[139px] md:w-[360px] h-[65px] md:h-[168px] z-[-1]" alt="pattern-squiggly-line-top">
+    <img src="./assets/images/pattern-squiggly-line-bottom.svg" class="absolute bottom-0 w-[285px] md:w-[760px] h-[199px] md:h-[530px] left-0 z-[-1]" alt="pattern-squiggly-line-bottom">
+    <img src="./assets/images/pattern-circle.svg" class="absolute md:top-[-90px] top-[-60px] left-[-40px] md:left-8" alt="pattern-circle">
+    <img src="./assets/images/pattern-circle.svg" class="absolute w-[120px] md:w-[217px] top-[433px] md:left-[56rem] left-[280px]" alt="pattern-circle">
+    <div id="popup" class="hidden w-[260px] absolute top-[134px] transform left-[50%] -translate-x-1/2 bg-green-500 p-4 font-500 rounded-lg">
+      <p>Form submitted successfully!</p>
+    </div>
   </div>
+  <header role="banner" class="mb-4">
+    <div class="flex items-center justify-center py-8">
+      <img src="./assets/images/logo-full.svg" alt="logo-full">
+    </div>
+  </header>
+  <main role="main">
+    <div id="banner-text" class="text-center flex items-center justify-center flex-col">
+      <h1 class="md:text-5xl text-3xl font-700 text-neutral-0 md:w-[670px]">Your Journey to Coding Conf 2025 Starts Here!</h1>
+      <p class="text-xl font-500 text-neutral-500 mt-4">Secure your spot at next year's biggest coding conference.</p>
+    </div>
+    <!-- Form starts -->
+    <form novalidate id="form" class="flex flex-col items-center">
+      <div class="w-full max-w-sm mx-auto">
+        <!-- Upload Container -->
+        <label for="avatar" class="mx-4 md:mx-0 text-neutral-0 text-xl">Uoload Avatar</label>
+        <label for="avatar" 
+                class="mx-4 md:mx-0 mb-2 focus:outline-1 focus:outline-neutral-0 bg-neutral-300/10 border border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer flex flex-col items-center">
+          <div id="preview-container" class="flex flex-col items-center">
+            <!-- SVG Icon -->
+            <img src="./assets/images/icon-upload.svg" class="w-[40px] h-[40px] rounded-xl" alt="icon-upload">
+            <!-- Placeholder Text -->
+            <p class="mt-2 text-gray-500">Drag and drop or click to upload</p>
+          </div>
+          <!-- Preview Image -->
+          <img id="preview-image" class="hidden w-[40px] h-[40px] rounded-xl object-cover" />
+                  <!-- Buttons -->
+          <div id="action-buttons" class="hidden mt-4 flex justify-center space-x-4">
+            <button id="removeImage" type="button"
+                    class="p-1 bg-neutral-300/10 text-white text-sm rounded shadow underline hover:bg-neutral-300/20">
+              Remove Image
+            </button>
+            <button id="editImage" type="button"
+                    class="p-1 bg-neutral-300/10 text-white text-sm rounded shadow hover:bg-neutral-300/20">
+              Change Image
+            </button>
+          </div>
+        </label>
+        <div id="state-error" class="flex items-center gap-1 mb-6 !text-neutral-500 mx-4 md:mx-0"  >
+          <span class="!flex items-center material-symbols-outlined  w-4 h-4 !text-lg !leading-none !font-extralight">info</span>
+          <p  class=" text-xs font-500">Upload your photo (JPG or PNG, max size: 500KB).</p>
+        </div>
+        <div id="state-img" class="hidden flex items-center gap-1 mb-6 !text-red-500 mx-4 md:mx-0"  >
+          <span class="!flex items-center material-symbols-outlined  w-4 h-4 !text-lg !leading-none !font-extralight">info</span>
+          <p  class=" text-xs font-500">file is too larg, please upload a photo under 500KB</p>
+        </div>
+        <!-- File Input -->
+        <input type="file" id="avatar" name="avatar" accept="image/jpg, image/png" 
+                class="hidden" >
+      </div>
+      <div class="flex flex-col">
+        <!-- Full Name -->
+        <label for="fullName" class="mx-4 md:mx-0 text-neutral-0 text-xl">Full Name</label>
+        <input type="text" id="fullName" name="fullName" required minlength="2" maxlength="50" class="mx-4 md:mx-0 mb-4 text-neutral-0 bg-neutral-300/10 md:w-[384px] w-[328px] px-4 py-3 border border-neutral-500 rounded-xl focus:outline-1 focus:outline-neutral-0" placeholder="Enter your full name">
+        <!-- Email Address -->
+        <label for="email" class="mx-4 md:mx-0 text-neutral-0 text-xl">Email Address</label>
+        <input type="email" id="email" name="email" required class="mx-4 md:mx-0 mb-4 text-neutral-0 bg-neutral-300/10 md:w-[384px] w-[328px] px-4 py-3 border border-neutral-500 rounded-xl focus:outline-none" placeholder="example@email.com">
+        <div id="error-email" class="flex items-center gap-1 mb-6 text-red-500 mx-4 md:mx-0 hidden">
+          <span class="!flex items-center material-symbols-outlined  w-4 h-4 !text-lg !leading-none !font-extralight">info</span>
+          <p  class=" text-xs font-500">Please enter a valid email address.</p>
+        </div>
+        <!-- GitHub Username -->
+        <label for="githubUsername" class="mx-4 md:mx-0 text-neutral-0 text-xl">GitHub Username</label>
+        <input type="text" id="githubUsername" name="githubUsername" required minlength="1" maxlength="50" class="mx-4 md:mx-0 mb-4 text-neutral-0 bg-neutral-300/10 md:w-[384px] w-[328px] px-4 py-3 border border-neutral-500 rounded-xl focus:outline-none" placeholder="@yourusername">
+        <button id="btn-submit" type="submit" class="mx-4 md:mx-0 px-4 py-2 bg-orange-500 text-xl font-700 md:w-[384px] w-[328px]  rounded-lg focus:outline-1 focus:outline-neutral-0">Generate My Ticket</button>
+      </div>
+    </form>
+    <!-- Form ends -->
+    <!-- Generated tickets starts -->
+    <div id="ticket" class="hidden">
+      <div class="text-center flex items-center justify-center flex-col mb-20">
+        <h2 class="text-3xl md:text-5xl font-700 text-neutral-0 text-center mx-1 md:mx-0 mb-8 md:w-[700px]">Congrats, <span id="name-user" class="bg-gradient-to-r from-gradientText-from to-gradientText-to text-transparent bg-clip-text">Mahmoud Abdelkarim</span>! Your ticket is ready.</h2>
+        <p class="text-xl font-400 text-neutral-0 text-center mx-1 md:mx-0 md:w-[580px]">We've emailed your ticket to <span id="email-user" class="text-gradientText-from">mabdelkarimkhalaf777@gmail.com</span> and will send updates in the run up to the event.</p>
+      </div>
+      <div class="h-[185px] md:mx-auto md:w-[600px] md:h-[280px] mx-4 p-4 md:px-10 flex flex-col justify-between md:justify-around relative">
+        <img src="./assets/images/pattern-ticket.svg" class="absolute top-0 left-0" alt="pattern-ticket">
+        <div class="h-[40 px] flex items-start gap-2">
+          <img src="./assets/images/logo-mark.svg" alt="logo-mark">
+          <div>
+            <p class="text-2xl md:text-4xl font-700 text-neutral-0 !leading-4">Coding Conf</p>
+            <p class="text-neutral-500 font-500 mt-5"><span id="month">Jan</span><span id="day" class="mx-1">31</span>, <span id="year">2025</span> / Austin, TX</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <img id="ticket-img" src="./assets/images/image-avatar.jpg" class="w-14 md:w-24 rounded-xl" alt="image-avatar">
+          <div class="flex flex-col justify-center md:gap-4">
+            <p id="ticket-user-name" class="text-neutral-0 md:text-3xl">Mahmoud Abdelkarim</p>
+            <div class="flex gap-1 items-center">
+              <img src="./assets/images/icon-github.svg" alt="icon-github">
+              <p id="ticket-github-user-name" class="text-neutral-0 md:text-2xl">mahmoud-abdelkarim777</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer role="contentinfo">
+    <div class="attribution text-neutral-500">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+      Coded by <a href="#">MAHMOUD.JS</a>.
+    </div>
+  </footer>
+  <!-- external js file   -->
+  <script src="main.js"></script>
+  <!-- sweet alert cdn -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
