@@ -832,6 +832,11 @@ video {
   background-color: hsl(7 88% 67% / var(--tw-bg-opacity, 1));
 }
 
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[url\(\'\.\.\/assets\/images\/background-mobile\.webp\'\)\] {
   background-image: url('../assets/images/background-mobile.webp');
 }
@@ -1116,6 +1121,10 @@ video {
     gap: 1rem;
   }
 
+  .md\:bg-\[url\(\'\.\.\/assets\/images\/background-tablet\.png\'\)\] {
+    background-image: url('../assets/images/background-tablet.png');
+  }
+
   .md\:bg-\[url\(\'\.\.\/assets\/images\/background-tablet\.webp\'\)\] {
     background-image: url('../assets/images/background-tablet.webp');
   }
@@ -1147,6 +1156,10 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .lg\:bg-\[url\(\'\.\.\/assets\/images\/background-desktop\.png\'\)\] {
+    background-image: url('../assets/images/background-desktop.png');
+  }
+
   .lg\:bg-\[url\(\'\.\.\/assets\/images\/background-desktop\.webp\'\)\] {
     background-image: url('../assets/images/background-desktop.webp');
   }

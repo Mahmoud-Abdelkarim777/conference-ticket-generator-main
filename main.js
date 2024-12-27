@@ -19,6 +19,7 @@ const ticketusername = document.getElementById('ticket-user-name')
 const bannerText = document.getElementById('banner-text')
 const ticket = document.getElementById('ticket')
 const ticketImg = document.getElementById('ticket-img')
+const lable = document.getElementById('lable')
 let imageBase64 = "";
   // Function to handle file changes
 function handleFileChange(event) {
@@ -53,6 +54,52 @@ function handleFileChange(event) {
     });
     }
 }
+// start drag drop function
+lable.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    lable.classList.add('bg-gray-200'); // Visual effect when dragging
+});
+
+lable.addEventListener('dragleave', () => {
+    lable.classList.remove('bg-gray-200'); // Remove visual effect
+});
+// Image processing when dropped
+lable.addEventListener('drop', (event) => {
+    event.preventDefault();
+    lable.classList.remove('bg-gray-200');
+
+    const file = event.dataTransfer.files[0];
+    if (file) {
+        const maxSizeInBytes = 0.5 * 1024 * 1024;
+        if (file.size > maxSizeInBytes) {
+            stateError.classList.add("hidden");
+            stateImg.classList.remove("hidden");
+            return;
+        } else {
+            stateError.classList.remove("hidden");
+            stateImg.classList.add("hidden");
+        }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        imageBase64 = e.target.result
+        previewImage.src = imageBase64;
+        ticketImg.src = imageBase64
+        previewImage.classList.remove('hidden'); 
+        previewContainer.classList.add('hidden');
+        actionButtons.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+    } else {
+    Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "No file selected.",
+        confirmButtonText: "Ok",
+        focusConfirm: true,
+    });
+    }
+});
+// end drag drop function
 // update the image
 editImage.addEventListener('click', function () {
     fileInput.value = ''; // إعادة تعيين الإدخال (حتى لو تم اختيار نفس الملف من قبل)
@@ -69,6 +116,7 @@ function removeImageHandler() {
 // Linking events to elements
 fileInput.addEventListener('change', handleFileChange);
 removeImage.addEventListener('click', removeImageHandler);
+
 // main function
 form.addEventListener('submit', function (event) {
     event.preventDefault();
