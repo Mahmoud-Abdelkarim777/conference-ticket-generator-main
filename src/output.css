@@ -753,6 +753,18 @@ video {
   height: 890px;
 }
 
+.h-\[100\] {
+  height: 100;
+}
+
+.h-\[280\] {
+  height: 280;
+}
+
+.h-\[280px\] {
+  height: 280px;
+}
+
 .w-14 {
   width: 3.5rem;
 }
@@ -854,6 +866,10 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
 }
 
 .gap-1 {
@@ -1169,6 +1185,10 @@ video {
 
   .md\:h-\[530px\] {
     height: 530px;
+  }
+
+  .md\:h-\[890px\] {
+    height: 890px;
   }
 
   .md\:w-24 {
