@@ -25,7 +25,7 @@ let imageBase64 = "";
 function handleFileChange(event) {
     const file = event.target.files[0];
     if (file) {
-        const maxSizeInBytes = 0.5 * 1024 * 1024;
+        const maxSizeInBytes = 2 * 1024 * 1024;
         if (file.size > maxSizeInBytes) {
             stateError.classList.add("hidden");
             stateImg.classList.remove("hidden");
