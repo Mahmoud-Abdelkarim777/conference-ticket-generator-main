@@ -207,3 +207,9 @@ let monthName = monthNames[monthIndex];
 document.getElementById("year").innerHTML = year;
 document.getElementById("month").innerHTML = monthName;
 document.getElementById("day").innerHTML = day;
+
+
+// Generate a random number
+let randomNum = document.getElementById("random-num");
+
+randomNum.innerHTML = Math.floor(Math.random() * 100000);
